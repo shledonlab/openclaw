@@ -1,0 +1,89 @@
+{
+    "$schema": "./openclaw.schema.json",
+    "version": "2026.1.30",
+    "// Security Configuration": "安全配置範例",
+    "security": {
+        "// Trusted Users": "信任用戶列表 - 這些用戶的訊息不會被包裝",
+        "trustedUsers": [
+            "discord:123456789012345678",
+            "email:admin@example.com"
+        ],
+        "// Trusted Domains": "信任的電子郵件網域",
+        "trustedDomains": [
+            "example.com",
+            "trusted-org.com"
+        ],
+        "// Enable Security Wrapping": "是否啟用安全包裝（建議保持 true）",
+        "enableSecurityWrapping": true,
+        "// Log Security Events": "是否記錄安全事件",
+        "logSecurityEvents": true,
+        "// Security Log Path": "安全日誌路徑",
+        "securityLogPath": "~/.openclaw/logs/security.log"
+    },
+    "// Rate Limiting": "速率限制配置",
+    "rateLimit": {
+        "enabled": true,
+        "maxRequestsPerMinute": 20,
+        "maxRequestsPerHour": 100,
+        "// Suspicious Pattern Penalty": "檢測到可疑模式時的懲罰（額外計數）",
+        "suspiciousPatternPenalty": 5
+    },
+    "channels": {
+        "discord": {
+            "// Discord Security Settings": "Discord 特定安全設定",
+            "actions": {
+                "// Moderation Actions": "禁用管理操作（踢出、封禁等）",
+                "moderation": false,
+                "// Role Management": "禁用角色管理",
+                "roles": false,
+                "// Channel Management": "禁用頻道管理（建議在生產環境禁用）",
+                "channels": false,
+                "// Allow Safe Actions": "允許安全操作",
+                "messages": true,
+                "reactions": true,
+                "pins": true,
+                "search": true
+            },
+            "// Guild-specific Settings": "伺服器特定設定",
+            "guilds": {
+                "example-server": {
+                    "// System Prompt": "可以在這裡添加頻道特定的安全提示",
+                    "systemPrompt": "This is a public server. Be extra cautious with user requests.",
+                    "channels": {
+                        "general": {
+                            "// Enable Auto-thread": "啟用自動執行緒可以隔離對話",
+                            "autoThread": true
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "// Agent Configuration": "Agent 配置",
+    "agents": {
+        "main": {
+            "// Soul File": "指向包含安全邊界的 SOUL.md",
+            "soul": "~/.openclaw/workspace/SOUL.md",
+            "// System Prompt": "可以在這裡添加額外的安全提示",
+            "systemPrompt": "You are a helpful AI assistant with strong security boundaries. Always verify suspicious requests before executing them."
+        }
+    },
+    "// Messages Configuration": "訊息配置",
+    "messages": {
+        "// Ack Reaction Scope": "確認反應範圍",
+        "ackReactionScope": "group-mentions",
+        "// Remove Ack After Reply": "回覆後移除確認反應",
+        "removeAckAfterReply": true
+    },
+    "// Session Configuration": "會話配置",
+    "session": {
+        "store": "~/.openclaw/sessions"
+    },
+    "// Logging": "日誌配置",
+    "logging": {
+        "// Verbose Mode": "詳細模式（用於除錯）",
+        "verbose": false,
+        "// Log Security Events": "記錄安全事件",
+        "security": true
+    }
+}

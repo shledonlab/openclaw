@@ -75,13 +75,14 @@
 - **狀態**: **失敗** - 高風險
 - **發現的問題**:
   1. `.env` 文件包含明文 API 密鑰:
-     - `ANTIGRAVITY_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx (已遮蔽)`
-     - `DISCORD_BOT_TOKEN=xxxxxxxxxxxxxxxxxxxxx.xxxxxx.xxxxxxxxxxxxxxxxxxxxxxxxxx (已遮蔽)`
+     - `ANTIGRAVITY_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx` (已遮蔽)
+     - `DISCORD_BOT_TOKEN=xxxxxxxxxxxxxxxxxxxxx.xxxxxx.xxxxxxxxxxxxxxxxxxxxxxxxxx` (已遮蔽)
   2. `openclaw.json` 也包含相同的密鑰（重複存儲）
 - **建議**:
   - ✅ 使用 `.env` 文件存儲密鑰（已做到）
   - ❌ 從 `openclaw.json` 中移除硬編碼的密鑰
   - ✅ 確保 `.env` 已加入 `.gitignore`（需驗證）
+- **⚠️ 重要**: 上述密鑰已被遮蔽。如果您的密鑰曾經被提交到 git，請立即輪換這些密鑰。
 
 ### ⚠️ **2.4 Gateway 認證 Token 強度**
 - **狀態**: 需要改進
